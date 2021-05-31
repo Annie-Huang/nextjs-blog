@@ -1,0 +1,7 @@
+https://nextjs.org/learn/basics/create-nextjs-app/setup
+
+https://github.com/Annie-Huang/nextjs-blog
+
+-------------------------------------------------------------------------
+
+C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
