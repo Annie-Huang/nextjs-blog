@@ -5,3 +5,12 @@ https://github.com/Annie-Huang/nextjs-blog
 -------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
+
+http://localhost:3000
+http://localhost:3000/posts/first-post
+
+
+pages/index.js is associated with the / route.
+pages/posts/first-post.js is associated with the /posts/first-post route.
+
+
