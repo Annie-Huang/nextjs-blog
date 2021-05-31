@@ -12,6 +12,7 @@ https://nextjs.org/learn/basics/navigate-between-pages/client-side
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
+C:\react\nextjs-blog>npm install classnames --save
 
 http://localhost:3000
 http://localhost:3000/posts/first-post
