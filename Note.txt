@@ -42,6 +42,14 @@ Next.js provides an Image component out of the box:
   in modern formats like WebP when the browser supports it. This avoids shipping large images to devices with a smaller viewport.
   It also allows Next.js to automatically adopt future image formats and serve them to browsers that support those formats.
 - Only loading images when they enter the viewport
-
+    <Image
+      src='/images/profile.jpg' // Route of the image file
+      height={144} // Desired size with correct aspect ratio
+      width={144} // Desired size with correct aspect ratio
+      alt='Your Name'
+    />
 
 <Head> is a React Component that is built into Next.js. It allows you to modify the <head> of a page.
+
+
+In Next.js, you can add global CSS files by importing them from pages/_app.js. You cannot import global CSS anywhere else.
