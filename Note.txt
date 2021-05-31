@@ -62,3 +62,5 @@ Next.js provides an Image component out of the box:
     />
 
 In Next.js, you can add global CSS files by importing them from pages/_app.js. You cannot import global CSS anywhere else.
+
+Out of the box, with no configuration, Next.js compiles CSS using PostCSS.
