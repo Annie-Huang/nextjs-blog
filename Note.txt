@@ -2,6 +2,8 @@ https://nextjs.org/learn/basics/create-nextjs-app/setup
 
 https://github.com/Annie-Huang/nextjs-blog
 
+https://nextjs.org/docs/basic-features/built-in-css-support#sass-support
+
 Up to
 https://nextjs.org/learn/basics/navigate-between-pages/client-side
 ------------------------------------------------------------------------------------
@@ -30,3 +32,11 @@ If you need to add attributes like, for example, className, add it to the a tag,
         Hello World
       </a>
     </Link>
+
+
+Next.js provides an Image component out of the box:
+- Ensuring your image is responsive on different screen sizes
+- Optimizing your images with a third-party tool or library. This allows for resizing, optimizing, and serving images
+  in modern formats like WebP when the browser supports it. This avoids shipping large images to devices with a smaller viewport.
+  It also allows Next.js to automatically adopt future image formats and serve them to browsers that support those formats.
+- Only loading images when they enter the viewport
