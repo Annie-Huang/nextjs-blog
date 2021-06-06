@@ -9,7 +9,7 @@ https://github.com/vercel/styled-jsx
 https://next-learn-starter.vercel.app/
 
 Up to
-https://nextjs.org/learn/basics/dynamic-routes
+https://nextjs.org/learn/basics/dynamic-routes/polishing-post-page
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
