@@ -24,6 +24,7 @@ http://localhost:3000
 http://localhost:3000/posts/first-post
 http://localhost:3000/posts/ssg-ssr
 http://localhost:3000/posts/pre-rendering
+http://localhost:3000/api/hello
 
 pages/index.js is associated with the / route.
 pages/posts/first-post.js is associated with the /posts/first-post route.
@@ -85,10 +86,10 @@ Static Generation
 - We recommend using Static Generation (with and without data) whenever possible because your page can be built once and served by CDN,
   which makes it much faster than having a server render the page on every request.
 - You can use Static Generation for many types of pages, including:
-  Marketing pages
-  Blog posts
-  E-commerce product listings
-  Help and documentation
+  o Marketing pages
+  o Blog posts
+  o E-commerce product listings
+  o Help and documentation
 
 - getStaticProps runs at build time in production, and… Inside the function, you can fetch external data and send it as props to the page.
 - !!!!  getStaticProps only runs on the server-side. It will never run on the client-side. It won’t even be included in the JS bundle for the browser.
@@ -199,8 +200,10 @@ Page Path Depends on External Data (statically generate pages with dynamic route
 ```
 
 
-
-
+Creating API Routes
+------------------------------------
+- req is an instance of http.IncomingMessage,
+- res is an instance of http.ServerResponse,
 
 
 
