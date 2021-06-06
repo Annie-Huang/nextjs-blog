@@ -70,13 +70,15 @@ In Next.js, you can add global CSS files by importing them from pages/_app.js. Y
 
 Out of the box, with no configuration, Next.js compiles CSS using PostCSS.
 
--------------------------------
+=====================================
 
 Pre-rendering:
+---------------------
 Each generated HTML is associated with minimal JavaScript code necessary for that page. When a page is loaded by the browser,
 its JavaScript code runs and makes the page fully interactive. (This process is called hydration.)
 
 Static Generation
+---------------------
 - is the pre-rendering method that generates the HTML at build time. The pre-rendered HTML is then reused on each request.
 - We recommend using Static Generation (with and without data) whenever possible because your page can be built once and served by CDN,
   which makes it much faster than having a server render the page on every request.
@@ -85,10 +87,27 @@ Static Generation
   Blog posts
   E-commerce product listings
   Help and documentation
+
 - getStaticProps runs at build time in production, and… Inside the function, you can fetch external data and send it as props to the page.
+- !!!!  getStaticProps only runs on the server-side. It will never run on the client-side. It won’t even be included in the JS bundle for the browser.
+        That means you can write code such as direct database queries without them being sent to browsers.
+- Because it’s meant to be run at build time, you won’t be able to use data that’s only available during request time, such as query parameters or HTTP headers.
+- Only Allowed in a Page. getStaticProps can only be exported from a page. You can’t export it from non-page files.
+
+
 
 Server-side Rendering
+---------------------
 - is the pre-rendering method that generates the HTML on each request.
 - Maybe your page shows frequently updated data, and the page content changes on every request. In that case, you can use Server-side Rendering.
 - It will be slower, but the pre-rendered page will always be up-to-date. Or you can skip pre-rendering and use client-side JavaScript to populate frequently updated data.
-
+- export async function getServerSideProps(context) {
+    return {
+      props: {
+        // props for your component
+      }
+    }
+  }
+- You should use getServerSideProps only if you need to pre-render a page whose data must be fetched at request time.
+- Time to first byte (TTFB) will be slower than getStaticProps because the server must compute the result on every request,
+  and the result cannot be cached by a CDN without extra configuration.
