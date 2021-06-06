@@ -18,6 +18,7 @@ C:\react\nextjs-blog>npm install tailwindcss postcss-preset-env postcss-flexbugs
 C:\react\nextjs-blog>npm install sass
 C:\react\nextjs-blog>npm install gray-matter
 C:\react\nextjs-blog>npm install remark remark-html
+C:\react\nextjs-blog>npm install date-fns
 
 http://localhost:3000
 http://localhost:3000/posts/first-post
