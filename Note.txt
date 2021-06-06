@@ -9,7 +9,7 @@ https://github.com/vercel/styled-jsx
 https://next-learn-starter.vercel.app/
 
 Up to
-https://nextjs.org/learn/basics/data-fetching
+https://nextjs.org/learn/basics/dynamic-routes
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
@@ -111,3 +111,25 @@ Server-side Rendering
 - You should use getServerSideProps only if you need to pre-render a page whose data must be fetched at request time.
 - Time to first byte (TTFB) will be slower than getStaticProps because the server must compute the result on every request,
   and the result cannot be cached by a CDN without extra configuration.
+
+
+Client-side Rendering
+-------------------------
+- Statically generate (pre-render) parts of the page that do not require external data.
+  When the page loads, fetch external data from the client using JavaScript and populate the remaining parts.
+- !!!! This approach works well for user dashboard pages, for example. Because a dashboard is a private, user-specific page,
+       SEO is not relevant, and the page doesn't need to be pre-rendered. The data is frequently updated, which requires request-time data fetching.
+- SWR. The team behind Next.js has created a React hook for data fetching called SWR. We highly recommend it if you’re fetching data on the client side.
+  It handles caching, revalidation, focus tracking, refetching on interval, and more.
+```
+    // (https://swr.vercel.app/)
+    import useSWR from 'swr'
+
+    function Profile() {
+      const { data, error } = useSWR('/api/user', fetch)
+
+      if (error) return <div>failed to load</div>
+      if (!data) return <div>loading...</div>
+      return <div>hello {data.name}!</div>
+    }
+```
