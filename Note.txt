@@ -21,7 +21,8 @@ C:\react\nextjs-blog>npm install gray-matter
 
 http://localhost:3000
 http://localhost:3000/posts/first-post
-
+http://localhost:3000/posts/ssg-ssr
+http://localhost:3000/posts/pre-rendering
 
 pages/index.js is associated with the / route.
 pages/posts/first-post.js is associated with the /posts/first-post route.
