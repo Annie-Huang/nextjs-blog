@@ -8,7 +8,7 @@ https://nextjs.org/docs/advanced-features/custom-document
 https://github.com/vercel/styled-jsx
 
 Up to
-https://nextjs.org/learn/basics/navigate-between-pages/client-side
+https://nextjs.org/learn/basics/data-fetching
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
@@ -66,3 +66,26 @@ Next.js provides an Image component out of the box:
 In Next.js, you can add global CSS files by importing them from pages/_app.js. You cannot import global CSS anywhere else.
 
 Out of the box, with no configuration, Next.js compiles CSS using PostCSS.
+
+-------------------------------
+
+Pre-rendering:
+Each generated HTML is associated with minimal JavaScript code necessary for that page. When a page is loaded by the browser,
+its JavaScript code runs and makes the page fully interactive. (This process is called hydration.)
+
+Static Generation
+- is the pre-rendering method that generates the HTML at build time. The pre-rendered HTML is then reused on each request.
+- We recommend using Static Generation (with and without data) whenever possible because your page can be built once and served by CDN,
+  which makes it much faster than having a server render the page on every request.
+- You can use Static Generation for many types of pages, including:
+  Marketing pages
+  Blog posts
+  E-commerce product listings
+  Help and documentation
+- getStaticProps runs at build time in production, and… Inside the function, you can fetch external data and send it as props to the page.
+
+Server-side Rendering
+- is the pre-rendering method that generates the HTML on each request.
+- Maybe your page shows frequently updated data, and the page content changes on every request. In that case, you can use Server-side Rendering.
+- It will be slower, but the pre-rendered page will always be up-to-date. Or you can skip pre-rendering and use client-side JavaScript to populate frequently updated data.
+
