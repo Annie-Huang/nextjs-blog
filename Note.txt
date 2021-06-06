@@ -15,6 +15,8 @@ C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com
 C:\react\nextjs-blog>npm install classnames --save
 C:\react\nextjs-blog>npm install tailwindcss postcss-preset-env postcss-flexbugs-fixes
 C:\react\nextjs-blog>npm install sass
+C:\react\nextjs-blog>npm install gray-matter
+
 
 http://localhost:3000
 http://localhost:3000/posts/first-post
