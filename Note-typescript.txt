@@ -1,0 +1,60 @@
+Static Generation and Server-side Rendering
+======================================================
+
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  // ...
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // ...
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // ...
+}
+
+Page.getInitialProps = async ({ req }) => {
+  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
+  return { userAgent }
+}
+
+
+API Routes
+===================
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
+  res.status(200).json({ name: 'John Doe' })
+}
+
+----------
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+type Data = {
+  name: string
+}
+
+export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  res.status(200).json({ name: 'John Doe' })
+}
+
+
+Custom App
+===================
+ ./pages/_app.tsx
+
+// import App from "next/app";
+import type { AppProps /*, AppContext */ } from 'next/app'
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
+}
+
+export default MyApp
+
+
+Type checking next.config.js
+=========================================
+The next.config.js file must be a JavaScript file as it does not get parsed by Babel or TypeScript,
