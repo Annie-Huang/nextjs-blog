@@ -1,0 +1,71 @@
+npx next -h
+
+Usage
+  $ next <command>
+
+Available commands
+  build, start, export, dev, telemetry
+
+Options
+  --version, -v   Version number
+  --help, -h      Displays this message
+
+For more information run a command with the --help flag
+  $ next build --help
+
+
+
+C:\react\nextjs-blog>next build
+C:\react\nextjs-blog>next build --profile
+C:\react\nextjs-blog>next build --debug
+C:\react\nextjs-blog>npx next dev -p 4000       << Use a different port.
+C:\react\nextjs-blog>npx next start -p 4000
+
+========================================================================
+
+C:\react\nextjs-blog>npm run build
+
+> learn-starter@0.1.0 build
+> next build
+
+info  - Using webpack 5. Reason: no next.config.js https://nextjs.org/docs/messages/webpack5
+info  - Checking validity of types
+info  - Creating an optimized production build
+info  - Compiled successfully
+info  - Collecting page data
+info  - Generating static pages (5/5)
+info  - Finalizing page optimization
+
+Page                              Size     First Load JS
+┌ ● /                             1.56 kB          77 kB
+├   /_app                         0 B              63 kB
+├ ○ /404                          3.06 kB        66.1 kB
+├ λ /api/hello                    0 B              63 kB
+└ ● /posts/[id]                   1.32 kB        76.8 kB
+    ├ /posts/pre-rendering
+    └ /posts/ssg-ssr
++ First Load JS shared by all     63 kB
+  ├ chunks/framework.c5113a.js    42 kB
+  ├ chunks/main.71948a.js         19.4 kB
+  ├ chunks/pages/_app.393365.js   557 B
+  ├ chunks/webpack.189c53.js      994 B
+  └ css/28fe7cef9b28e6eda60d.css  256 B
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+   (ISR)     incremental static regeneration (uses revalidate in getStaticProps)
+
+------------------
+
+- Size – The number of assets downloaded when navigating to the page client-side. The size for each route only includes its dependencies.
+- First Load JS – The number of assets downloaded when visiting the page from the server. The amount of JS shared by all is shown as a separate metric.
+
+
+C:\react\nextjs-blog>next build --debug
+    Redirects
+    ┌ source: /:path+/
+    ├ destination: /:path+
+    └ permanent: true
+
+C:\react\nextjs-blog>npx next dev -p 4000

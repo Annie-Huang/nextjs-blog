@@ -8,8 +8,11 @@ https://nextjs.org/docs/advanced-features/custom-document
 https://github.com/vercel/styled-jsx
 https://next-learn-starter.vercel.app/
 
+Part1: https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&utm_medium=nav-cta&utm_campaign=next-website
+Part2: https://nextjs.org/docs/getting-started
+
 Up to
-https://nextjs.org/learn/basics/deploying-nextjs-app
+https://nextjs.org/docs/basic-features/pages
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
