@@ -6,6 +6,7 @@ https://nextjs.org/docs/basic-features/built-in-css-support#sass-support
 https://nextjs.org/docs/api-reference/next/head
 https://nextjs.org/docs/advanced-features/custom-document
 https://github.com/vercel/styled-jsx
+https://next-learn-starter.vercel.app/
 
 Up to
 https://nextjs.org/learn/basics/data-fetching
