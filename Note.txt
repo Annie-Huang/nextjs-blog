@@ -157,7 +157,7 @@ Page Path Depends on External Data (statically generate pages with dynamic route
       // Fetch necessary data for the blog post using params.id
     }
 ```
-
+- paths contains the array of known paths returned by getAllPostIds(), which include the params defined by pages/posts/[id].js.
 
 
 
