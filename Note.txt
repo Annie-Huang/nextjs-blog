@@ -13,6 +13,7 @@ Part2: https://nextjs.org/docs/getting-started
 
 Up to
 https://nextjs.org/docs/basic-features/pages
+https://nextjs.org/docs/basic-features/typescript#pages
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"

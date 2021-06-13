@@ -1,3 +1,11 @@
+https://nextjs.org/docs/basic-features/typescript#pages
+##################################################################################
+
+touch tsconfig.json
+npm run dev             << Will create next-env.d.ts .
+
+
+
 Static Generation and Server-side Rendering
 ======================================================
 
