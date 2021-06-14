@@ -1,0 +1,267 @@
+https://nextjs.org/docs/basic-features/supported-browsers-features
+
+###################################################################################
+
+
+Polyfills
+-------------------------------
+In addition, to reduce bundle size, Next.js will only load these polyfills for browsers that require them. The majority of the web traffic globally will not download these polyfills.
+
+Next.js allows you to use the latest JavaScript features out of the box. In addition to ES6 features, Next.js also supports:
+- Async/await (ES2017)
+- Object Rest/Spread Properties (ES2018)
+- Dynamic import() (ES2020)
+- Optional Chaining (ES2020)
+- Nullish Coalescing (ES2020)
+- Class Fields and Static Properties (part of stage 3 proposal)
+
+
+Nullish Coalescing (ES2020):
+https://github.com/tc39/proposal-nullish-coalescing
+Base case. If the expression at the left-hand side of the ?? operator evaluates to undefined or null, its right-hand side is returned.
+
+        const response = {
+          settings: {
+            nullValue: null,
+            height: 400,
+            animationDuration: 0,
+            headerText: '',
+            showSplashScreen: false
+          }
+        };
+
+        const undefinedValue = response.settings.undefinedValue ?? 'some other default'; // result: 'some other default'
+        const nullValue = response.settings.nullValue ?? 'some other default'; // result: 'some other default'
+        const headerText = response.settings.headerText ?? 'Hello, world!'; // result: ''
+        const animationDuration = response.settings.animationDuration ?? 300; // result: 0
+        const showSplashScreen = response.settings.showSplashScreen ?? true; // result: false
+
+        -------------------------------------
+
+Optional Chaining (ES2020)
+Only useful if you are using js rather than ts
+https://github.com/tc39/proposal-optional-chaining
+
+        var street = user.address?.street
+        var fooValue = myForm.querySelector('input[name=foo]')?.value
+        const animationDuration = response.settings?.animationDuration ?? 300;
+
+        -------------------------------------
+
+Object Rest/Spread Properties (ES2018)
+https://github.com/tc39/proposal-object-rest-spread
+
+        let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
+        x; // 1
+        y; // 2
+        z; // { a: 3, b: 4 }
+
+        let n = { x, y, ...z };
+        n; // { x: 1, y: 2, a: 3, b: 4 }
+
+        -------------------------------------
+
+Dynamic import() (ES2020)
+https://github.com/tc39/proposal-dynamic-import
+
+        <script>
+          const main = document.querySelector("main");
+          for (const link of document.querySelectorAll("nav > a")) {
+            link.addEventListener("click", e => {
+              e.preventDefault();
+
+              import(`./section-modules/${link.dataset.entryModule}.js`)
+                .then(module => {
+                  module.loadPageInto(main);
+                })
+                .catch(err => {
+                  main.textContent = err.message;
+                });
+            });
+          }
+        </script>
+
+        -------------------------------------
+
+Class Fields and Static Properties (part of stage 3 proposal)
+https://github.com/tc39/proposal-class-fields
+
+        from:
+        class Counter extends HTMLElement {
+          constructor() {
+            super();
+            this.onclick = this.clicked.bind(this);
+            this.x = 0;
+          }
+          ...
+        }
+
+        to:
+        class Counter extends HTMLElement {
+          x = 0;        // Public variable
+
+          #x = 0;       // Private variable
+
+          constructor() {
+            super();
+            this.onclick = this.clicked.bind(this);
+          }
+          ...
+        }
+
+        -------------------------------------
+
+https://github.com/tc39/proposal-static-class-features
+
+
+
+Customizing Babel Config (Advanced)
+-----------------------------------------------
+Next.js includes the next/babel preset to your app, which includes everything needed to compile React applications and server-side code. But if you want to extend the default Babel configs, it's also possible.
+To start, you only need to define a .babelrc file (or babel.config.js) at the top of your app.
+
+Here's an example .babelrc file:
+
+        {
+          "presets": ["next/babel"],
+          "plugins": []
+        }
+
+        -------------------------------------
+
+
+To add presets/plugins without configuring them, you can do it this way:
+
+        {
+          "presets": ["next/babel"],
+          "plugins": ["@babel/plugin-proposal-do-expressions"]
+        }
+
+        -------------------------------------
+
+To add presets/plugins with custom configuration, do it on the next/babel preset like so:
+
+        {
+          "presets": [
+            [
+              "next/babel",
+              {
+                "preset-env": {},
+                "transform-runtime": {},
+                "styled-jsx": {},
+                "class-properties": {}
+              }
+            ]
+          ],
+          "plugins": []
+        }
+
+
+For styled-component plugin:
+
+        {
+          "presets": ["next/babel"],
+          "plugins": [["styled-components", { "displayName": true, "preprocess": false, "ssr": true }]]
+        }
+
+
+Customizing PostCSS Config
+-------------------------------------------
+Autoprefixer automatically adds vendor prefixes to CSS rules (back to IE11).
+Cross-browser Flexbox bugs are corrected to behave like the spec.
+New CSS features are automatically compiled for Internet Explorer 11 compatibility:
+- all Property
+- Break Properties
+- font-variant Property
+- Gap Properties
+- Media Query Ranges
+
+
+Gap Properties:
+        gap: 0;
+        Copy to Clipboard
+        gap: 10%;
+        gap: 1em;
+        gap: 10px 20px;
+        gap: calc(20px + 10%);
+
+
+Media Query Ranges:
+        @media (max-width: 30em) { ... }                            -->    @media (width <= 30em) { ... }
+        @media (min-width: 30em) and (max-width: 50em) { ... }      -->    @media (30em <= width <= 50em ) { ... }
+
+
+To customize the PostCSS configuration, create a postcss.config.json file in the root of your project.
+This is the default configuration used by Next.js:
+        {
+          "plugins": [
+            "postcss-flexbugs-fixes",
+            [
+              "postcss-preset-env",
+              {
+                "autoprefixer": {
+                  "flexbox": "no-2009"
+                },
+                "stage": 3,
+                "features": {
+                  "custom-properties": false
+                }
+              }
+            ]
+          ]
+        }
+
+Note: Next.js also allows the file to be named .postcssrc.json, or, to be read from the postcss key in package.json.
+It is also possible to configure PostCSS with a postcss.config.js file, which is useful when you want to conditionally include plugins based on environment:
+Note: Next.js also allows the file to be named .postcssrc.js.
+
+        module.exports = {
+          plugins:
+            process.env.NODE_ENV === 'production'
+              ? [
+                  'postcss-flexbugs-fixes',
+                  [
+                    'postcss-preset-env',
+                    {
+                      autoprefixer: {
+                        flexbox: 'no-2009',
+                      },
+                      stage: 3,
+                      features: {
+                        'custom-properties': false,
+                      },
+                    },
+                  ],
+                ]
+              : [
+                  // No transformations in development
+                ],
+        }
+
+
+Customizing Target Browsers
+-----------------------------------------
+To customize browserslist, create a browserslist key in your package.json like so:
+
+        {
+          "browserslist": [">0.3%", "not ie 11", "not dead", "not op_mini all"]
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
