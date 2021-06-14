@@ -1,0 +1,50 @@
+
+To add a web font to your Next.js application, override next/head. For example, you can add a font to a specific page:
+
+        // pages/index.js
+
+        import Head from 'next/head'
+
+        export default function IndexPage() {
+          return (
+            <div>
+              <Head>
+                <link
+                  href="https://fonts.googleapis.com/css2?family=Inter"
+                  rel="stylesheet"
+                />
+              </Head>
+              <p>Hello world!</p>
+            </div>
+          )
+        }
+
+or to your entire application with a Custom Document.
+
+        // pages/_document.js
+
+        import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+        class MyDocument extends Document {
+          render() {
+            return (
+              <Html>
+                <Head>
+                  <link
+                    href="https://fonts.googleapis.com/css2?family=Inter"
+                    rel="stylesheet"
+                  />
+                </Head>
+                <body>
+                  <Main />
+                  <NextScript />
+                </body>
+              </Html>
+            )
+          }
+        }
+
+        export default MyDocument
+
+
+Automatic Webfont Optimization currently supports Google Fonts and Typekit with support for other font providers coming soon. We're also planning to add control over loading strategies and font-display values.
