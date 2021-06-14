@@ -12,8 +12,7 @@ Part1: https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&ut
 Part2: https://nextjs.org/docs/getting-started
 
 Up to
-https://nextjs.org/docs/basic-features/pages
-https://nextjs.org/docs/basic-features/typescript#pages
+https://nextjs.org/docs/basic-features/font-optimization
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"

@@ -1,0 +1,111 @@
+https://nextjs.org/docs/basic-features/image-optimization
+https://nextjs.org/docs/api-reference/next/image
+
+
+Required Props
+src
+- The path or URL to the source image. This is required.
+- When using an external URL, you must add it to domains in next.config.js.
+width
+- The width of the image, in pixels. Must be an integer without a unit.
+- Required unless layout="fill".
+height
+- The height of the image, in pixels. Must be an integer without a unit.
+- Required unless layout="fill".
+
+Optional Props
+layout
+- The layout behavior of the image as the viewport changes size. Defaults to intrinsic.
+- When fixed, the image dimensions will not change as the viewport changes (no responsiveness) similar to the native img element.
+- When intrinsic, the image will scale the dimensions down for smaller viewports but maintain the original dimensions for larger viewports.
+- When responsive, the image will scale the dimensions down for smaller viewports and scale up for larger viewports.
+- When fill, the image will stretch both width and height to the dimensions of the parent element, usually paired with the objectFit property.
+loader
+sizes
+- A string mapping media queries to device sizes. Defaults to 100vw.
+- We recommend setting sizes when using layout="responsive" or layout="fill" and your image will not be the same width as the viewport.
+quality
+- The quality of the optimized image, an integer between 1 and 100 where 100 is the best quality. Defaults to 75.
+priority
+- When true, the image will be considered high priority and preload.
+- Should only be used when the image is visible above the fold. Defaults to false.
+
+Advanced Props
+objectFit
+- The image fit when using layout="fill".
+objectPosition
+- The image position when using layout="fill".
+loading
+- Attention: This property is only meant for advanced usage. Switching an image to load with eager will normally hurt performance.
+- The loading behavior of the image. Defaults to lazy.
+- When lazy, defer loading the image until it reaches a calculated distance from the viewport.
+- When eager, load the image immediately.
+
+Other Props
+Other properties on the <Image /> component will be passed to the underlying img element with the exception of the following:
+- style. Use className instead.
+- srcSet. Use Device Sizes instead.
+- decoding. It is always "async".
+
+        import Image from 'next/image'
+
+        const myLoader = ({ src, width, quality }) => {
+          return `https://example.com/${src}?w=${width}&q=${quality || 75}`
+        }
+
+        const MyImage = (props) => {
+          return (
+            <Image
+              loader={myLoader}
+              src="/me.png"
+              alt="Picture of the author"
+              width={500}
+              height={500}
+            />
+          )
+        }
+
+
+Loader
+=============
+If you want to use a cloud provider to optimize images instead of using the Next.js' built-in Image Optimization, you can configure the loader and path prefix.
+- Vercel: Works automatically when you deploy on Vercel, no configuration necessary. Learn more
+- Imgix: loader: 'imgix'
+- Cloudinary: loader: 'cloudinary'
+- Akamai: loader: 'akamai'
+- Default: Works automatically with next dev, next start, or a custom server
+
+        module.exports = {
+          images: {
+            loader: 'imgix',
+            path: 'https://example.com/myaccount/',
+          },
+        }
+
+
+Caching
+============
+The expiration (or rather Max Age) is defined by the upstream server's Cache-Control header.
+If s-maxage is found in Cache-Control, it is used. If no s-maxage is found, then max-age is used. If no max-age is found, then 60 seconds is used.
+
+
+Advanced
+===============
+The following configuration is for advanced use cases and is usually not necessary. If you choose to configure the properties below, you will override any changes to the Next.js defaults in future updates.
+
+Device Sizes
+In some cases, where you know the expected device widths from the users of your website, you can specify a list of device width breakpoints using the deviceSizes property.
+        module.exports = {
+          images: {
+            deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+          },
+        }
+
+Image Sizes
+You can specify a list of image widths using the imageSizes property. These widths should be different (usually smaller) than the widths defined in deviceSizes because the arrays will be concatenated.
+        module.exports = {
+          images: {
+            imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+          },
+        }
+
