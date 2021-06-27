@@ -12,8 +12,7 @@ Part1: https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&ut
 Part2: https://nextjs.org/docs/getting-started
 
 Up to
-https://nextjs.org/docs/routing/dynamic-routes
-https://nextjs.org/docs/api-reference/next/link
+https://nextjs.org/docs/api-routes/introduction
 ------------------------------------------------------------------------------------
 
 C:\react>npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
